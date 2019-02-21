@@ -1,6 +1,10 @@
 #!/bin/bash
 
 clear
+echo "InstallArchKDE.sh — Version 0.98"
+sleep 1
+
+clear
 echo "IMPORTANT: This script is supposed to be executed as root after the 'pacstrap /mnt' and 'arch-chroot /mnt' commands."
 sleep 4
 echo "Press ENTER to continue."
@@ -24,9 +28,9 @@ echo "'toilet', 'vim', 'inxi', 'git', 'sudo' and 'yay' packages are goin' to be 
 read
 echo "Edit the 'extra.txt' file to choose what extra packages to install (ye can do it afore the last phase of the installation begins)."
 read
-echo "Ye should set your keyboard layout afore. Use the 'loadkeys' command. Example: 'loadkeys it' for Italian layout."
-echo "The default is US. Available layouts can be listed with the command 'ls /usr/share/kbd/keymaps/**/*.map.gz'"
-echo "Ye can search writing 'ls /usr/share/kbd/keymaps/**/*SRC*.map.gz' where 'SRC' is the language. For example 'ls /usr/share/kbd/keymaps/**/*it*.map.gz'"
+echo "Ye should set your keyboard layout afore (so you don't mess up the passwords you'll set). Use the 'loadkeys' command. Example: 'loadkeys it' for Italian layout."
+echo "The default is US. Available layouts can be listed with the command 'ls /usr/share/kbd/keymaps/**/*.map.gz'."
+echo "Ye can search writing 'ls /usr/share/kbd/keymaps/**/*SRC*.map.gz' where 'SRC' is the language. For example 'ls /usr/share/kbd/keymaps/**/*it*.map.gz'."
 read
 echo "Press ENTER to continue, otherwise press CTRL+C."
 read
@@ -70,6 +74,9 @@ read
 vim username.tmp
 username=$(cat username.tmp)
 useradd -m -g users -G wheel,storage,power -s /bin/bash $username
+echo
+echo "Choose $username password:"
+passwd $username
 echo "User created."
 echo
 git clone https://aur.archlinux.org/yay.git
@@ -98,6 +105,7 @@ read
 clear
 toilet "1/6 — Setting up bootctl..." -f term --gay
 bootctl install
+cd /
 cd boot/loader
 echo "default arch" > loader.conf
 echo "timeout " >> loader.conf
@@ -120,9 +128,7 @@ echo "To find it out, on vim press ALT+SHIFT+: and write 'r !blkid' then press E
 echo "Press ENTER to open Vim."
 read
 vim arch.conf
-cd ..
-cd ..
-cd ..
+cd /
 echo "Bootctl: ready."
 echo
 echo "Press ENTER to continue to the next phase."
@@ -159,9 +165,7 @@ echo "Locale is set."
 echo
 echo "Choose root password:"
 passwd root
-echo
-echo "Choose $username password:"
-passwd $username
+cd $OLDPWD
 rm username.tmp
 echo "Arch configured."
 echo
@@ -214,16 +218,16 @@ sleep 2
 clear
 
 toilet DONE! --gay
-sleep 1
+sleep 2
 echo
 echo "Hey,"
 echo "thank you for using this script."
-sleep 1
+sleep 2
 echo "Contact me on the GitHub page for feedback."
 echo "github.com/Azarilh/ArchLinuxKdeInstallScript"
-sleep 1
+sleep 2
 echo "Have a nice day!"
-sleep 1
+sleep 2
 echo
 echo "Press ENTER to exit."
 read
