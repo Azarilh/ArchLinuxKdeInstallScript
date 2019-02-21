@@ -4,6 +4,7 @@ clear
 echo "This script is supposed to be executed as root after the 'pacstrap /mnt' and 'arch-chroot /mnt' commands."
 echo "KDE Plasma and other important packages will be installed and configured on your system."
 echo "'toilet', 'vim', 'inxi', 'git', 'sudo' and 'yay' packages are goin' to be installed and used by this script. You can remove 'em afterwards."
+echo "Edit the 'extra.txt' file to choose what extra packages to install."
 echo "Press ENTER to continue, otherwise press CTRL+C."
 read
 
