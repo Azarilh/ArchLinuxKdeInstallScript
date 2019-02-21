@@ -36,4 +36,5 @@ If you don't have the script in the live-usb Arch, follow these steps:
 	pacman -Sy git
 	git clone https://github.com/Azarilh/ArchLinuxKdeInstallScript
 	cd ArchLinuxKdeInstallScript
+	chmod 777 InstallArchKDE.sh
 	./InstallArchKDE.sh
