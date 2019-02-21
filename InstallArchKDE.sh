@@ -1,8 +1,10 @@
 #!/bin/bash
 
 clear
-echo "InstallArchKDE.sh — Version 0.98"
+echo "InstallArchKDE.sh — Version 1.00"
 sleep 1
+
+dir=$(pwd)
 
 clear
 echo "IMPORTANT: This script is supposed to be executed as root after the 'pacstrap /mnt' and 'arch-chroot /mnt' commands."
@@ -139,7 +141,7 @@ toilet "2/6 — Adding AUR repositories..." -f term --gay
 echo "" >> /etc/pacman.conf
 echo "[archlinuxfr]" >> /etc/pacman.conf
 echo "SigLevel = Never" >> /etc/pacman.conf
-echo -n "Server = http://repo.archlinux.fr/$" >> /etc/pacman.conf && echo arch
+echo -n "Server = http://repo.archlinux.fr/$" >> /etc/pacman.conf && echo "arch" >> /etc/pacman.conf
 echo "[archlinuxfr] added."
 echo
 echo "'/etc/pacman.conf' will now be opened with Vim."
@@ -165,7 +167,7 @@ echo "Locale is set."
 echo
 echo "Choose root password:"
 passwd root
-cd $OLDPWD
+cd $dir
 rm username.tmp
 echo "Arch configured."
 echo
@@ -208,13 +210,22 @@ read
 clear
 toilet "6/6 — Installing other packages..." -f term --gay
 echo "'extra.txt' will be now opened with Vim."
-echo "Add or remove packages that you want to install."
+echo "Add or remove packages that you want to install from official Arch repositories."
+echo "Do not add packages that don't exist, this would cancel the installation of all the other packages."
 echo "NOTE: Konsole has been already installed! It's important to have at least one terminal emulator."
 read
+vim extra.txt
 extra=$(cat extra.txt)
-pacman -S $extra
+pacman -Sy $extra
+echo
+echo "extra2.txt will be now opened with Vim."
+echo "Add or remove packages that you want to install from AUR repositories."
+read
+vim extra2.txt
+extra2=$(cat extra2.txt)
+yay -Sy $extra2
 echo "Packages are installed."
-sleep 2
+sleep 3
 clear
 
 toilet DONE! --gay
