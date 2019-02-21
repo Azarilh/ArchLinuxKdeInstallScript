@@ -12,27 +12,31 @@ echo
 echo "Internet connection will be tested pinging three different IPs." 
 echo "Press ENTER to continue."
 read
+echo
 ping -q -c 4 qwant.com
+echo
 echo
 ping -q -c 4 duckduckgo.com
 echo
+echo
 ping -q -c 4 archlinux.org
+echo
 echo
 echo "If all packets are lost, ye probably have an Internet connection issue. Cancel this script with CTRL+C and solve the issue then try again. Otherwise press ENTER to continue."
 read
 
-echo
+clear
 echo "Initialising..."
 pacman -Syu --noconfirm
-echo "System updated."
+echo "System: updated."
 pacman -S vim --noconfirm
-echo "Vim ready."
+echo "Vim: ready."
 pacman -S git --noconfirm
-echo "Git ready."
+echo "Git: ready."
 pacman -S sudo --noconfirm
-echo "Sudo ready."
+echo "Sudo: ready."
 pacman -S base-devel --noconfirm
-echo "Makepkg ready."
+echo "Makepkg: ready."
 
 echo
 echo "Creating a user..."
@@ -47,115 +51,157 @@ echo "User created."
 echo
 git clone https://aur.archlinux.org/yay.git
 chmod 777 yay
+echo
 echo "'/etc/sudoers' will now be opened with Vim through visudo command."
 echo "Uncomment '%wheel ALL=(ALL) ALL'.."
+echo "Press ENTER to open Vim."
 read
 EDITOR=vim visudo
 cd yay
 sudo -u $username makepkg -si
 cd ..
 rm -rf yay
-echo "Yay ready."
+echo "Yay: ready."
 
 echo
-yay -S toilet -noconfirm
-echo "Toilet ready."
-yay -S inxi -noconfirm
-echo "Inxi ready."
-sleep 1
+sudo -u $username yay -S toilet --noconfirm
+echo "Toilet: ready."
+sudo -u $username yay -S inxi --noconfirm
+echo "Inxi: ready."
+echo
+echo "Press ENTER to continue to next phase."
+read
 
-
+clear
 toilet "1/6 — Setting up bootctl..." -f term --gay
 bootctl install
 cd boot/loader
-echo "default arch" >> loader.conf
-echo "timeout " > loader.conf
+echo "default arch" > loader.conf
+echo "timeout " >> loader.conf
+echo
 echo "'loader.conf' will now be opened with Vim."
 echo "After 'timeout' write the timeout ye desire in seconds. For example 'timeout 4'."
+echo "This is how long you want to wait until bootctl selects automatically the boot option."
+echo "Press ENTER to open Vim."
 read
 vim loader.conf
 cd entries
-echo "title ArchLinux" >> arch.conf
-echo "linux /vmlinuz-linux" > arch.conf
-echo "initrd /initramfs-linux.img" > arch.conf
-echo "options root=PARTUUID=ASD rw" > arch.conf
+echo "title ArchLinux" > arch.conf
+echo "linux /vmlinuz-linux" >> arch.conf
+echo "initrd /initramfs-linux.img" >> arch.conf
+echo "options root=PARTUUID=ASD rw" >> arch.conf
+echo
 echo "'arch.conf' will now be opened with Vim."
 echo "Substitute 'ASD' with the correct PARTUUID of your root partition."
 echo "To find it out, on vim press ALT+SHIFT+: and write 'r !blkid' then press ENTER."
+echo "Press ENTER to open Vim."
 read
 vim arch.conf
 cd ..
 cd ..
 cd ..
-echo "Bootctl is ready."
-sleep 1
+echo "Bootctl: ready."
 echo
+echo "Press ENTER to continue to the next phase."
+read
 
+clear
 toilet "2/6 — Adding AUR repositories..." -f term --gay
-echo "" > /etc/pacman.conf
-echo "[archlinuxfr]" > /etc/pacman.conf
-echo "SigLevel = Never" > /etc/pacman.conf
-echo "Server = http://repo.archlinux.fr/$arch" > /etc/pacman.conf
+echo "" >> /etc/pacman.conf
+echo "[archlinuxfr]" >> /etc/pacman.conf
+echo "SigLevel = Never" >> /etc/pacman.conf
+echo "Server = http://repo.archlinux.fr/$arch" >> /etc/pacman.conf
 echo "[archlinuxfr] added."
+echo
 echo "'/etc/pacman.conf' will now be opened with Vim."
 echo "Ye should uncomment [multilib] and the line after."
+echo "Press ENTER to open Vim."
 read
 vim /etc/pacman.conf
 echo "AUR repositories are updated."
-sleep 1
 echo
+echo "Press ENTER to continue to the next phase."
+read
 
+clear
 toilet "3/6 — Configuring Arch..." -f term --gay
+echo
 echo "'/etc/locale.gen' will now be opened with Vim."
 echo "Uncomment the locale you want."
+echo "Press ENTER to open Vim."
 read
 vim /etc/locale.gen
 locale-gen
 echo "Locale is set."
+echo
 echo "Choose root password:"
 passwd root
+echo
 echo "Choose $username password:"
 passwd $username
 rm username.tmp
-sleep 1
+echo "Arch configured."
 echo
+echo "Press ENTER to continue to the next phase."
+read
 
+clear
 toilet "4/6 — Installing KDE and other important packages..." -f term --gay
 pacman -Sy
 pacman -S plasma
 pacman -S vim networkmanager network-manager-applet networkmanager-pptp networkmanager-openconnect networkmanager-vpnc sudo konsole packagekit-qt5 pulseaudio
 echo "KDE Plasma is installed."
-sleep 1
 echo
+echo "Press ENTER to continue to the next phase."
+read
 
+clear
 toilet "5/6 — Setting up KDE Plasma..." -f term --gay
 systemctl enable sddm
 echo "Simple Display Desktop Manager is enabled."
 systemctl enable pulseaudio
 echo "Pulseaudio is enabled."
 systemctl enable NetworkManager
-asd=$(cat asd.tmp)
+echo
 inxi -n
-echo "Write your IF name (it should be written above, it's probably eth0 or enp10s0 or something like that)."
+echo
+echo "Write your IF name (it should be written above under 'inxi -n' command, it's probably eth0 or enp10s0 or something like that)."
+echo "If you're unsure write 'eth0' or 'enp10s0' then, after this script is done, check if you were right with the command 'inxi -n' or 'ifconfig'."
 echo "Press ENTER to open Vim."
 read
 vim asd.tmp
+asd=$(cat asd.tmp)
 systemctl enable dhcpcd@$asd
 rm asd.tmp
 echo "Network Manager is enabled."
-sleep 1
 echo
+echo "Press ENTER to continue to the next phase."
+read
 
+clear
 toilet "6/6 — Installing other packages..." -f term --gay
+echo "'extra.txt' will be now opened with Vim."
+echo "Add or remove packages that you want to install."
+echo "NOTE: Konsole has been already installed! It's important to have at least one terminal emulator."
+read
 extra=$(cat extra.txt)
 pacman -S $extra
 echo "Packages are installed."
-sleep 1
+sleep 2
 clear
 
 toilet DONE! --gay
 sleep 1
 echo
-echo "Press ENTER to reboot."
+echo "Hey,"
+echo "thank you for using this script."
+sleep 1
+echo "Contact me on the GitHub page for feedback."
+echo "github.com/Azarilh/ArchLinuxKdeInstallScript"
+sleep 1
+echo "Have a nice day!"
+sleep 1
+echo
+echo "Press ENTER to exit."
 read
 exit
