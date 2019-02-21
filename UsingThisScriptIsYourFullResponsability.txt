@@ -1,4 +1,4 @@
 I don't assume any responsability in regards of the usage of my script.
 Using it, you agree that it's your full responsability whatever will happen to your computer device.
-If you don't want to risk try it first on a virtual machine, an unused/unimportant computer or open the script with a text editor and check if it's what you want.
+If you don't want to risk try it first on a virtual machine or an unused/unimportant computer or open the script with a text editor and check if it's what you want.
 You can edit it and share it edited or not edited. The copyright is GNU General Public Licence v3.
