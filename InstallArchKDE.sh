@@ -1,8 +1,9 @@
 #!/bin/bash
 
+clear
 echo "This script is supposed to be executed as root after the 'pacstrap /mnt' and 'arch-chroot /mnt' commands."
 echo "KDE Plasma and other important packages will be installed and configured on your system."
-echo "'toilet', 'vim', 'inxi', 'git' and 'yay' packages are goin' to be installed and used by this script. You can remove 'em afterwards."
+echo "'toilet', 'vim', 'inxi', 'git', 'sudo' and 'yay' packages are goin' to be installed and used by this script. You can remove 'em afterwards."
 echo "Press ENTER to continue, otherwise press CTRL+C."
 read
 
@@ -10,33 +11,47 @@ echo
 echo "Internet connection will be tested pinging three different IPs." 
 echo "Press ENTER to continue."
 read
-ip -q -c 4 qwant.com
-ip -q -c 4 duckduckgo.com
-ip -q -c 4 archlinux.org
+ping -q -c 4 qwant.com
+echo
+ping -q -c 4 duckduckgo.com
+echo
+ping -q -c 4 archlinux.org
+echo
 echo "If all packets are lost, ye probably have an Internet connection issue. Cancel this script with CTRL+C and solve the issue then try again. Otherwise press ENTER to continue."
 read
 
 echo
 echo "Initialising..."
-pacman -Syu -noconfirm
+pacman -Syu --noconfirm
 echo "System updated."
-pacman -S vim -noconfirm
+pacman -S vim --noconfirm
 echo "Vim ready."
-pacman -S git -noconfirm
+pacman -S git --noconfirm
 echo "Git ready."
+pacman -S sudo --noconfirm
+echo "Sudo ready."
+pacman -S base-devel --noconfirm
+echo "Makepkg ready."
 
 echo
 echo "Creating a user..."
-username=$(cat username.tmp)
 echo "Choose your username (Vim will be opened):"
 echo "VIM TUTORIAL: When ye're done press ALT+SHIFT+:, write 'w' to save, 'q' to quit, then press ENTER to confirm."
+echo "Press ENTER to open Vim."
+read
 vim username.tmp
+username=$(cat username.tmp)
 useradd -m -g users -G wheel,storage,power -s /bin/bash $username
 echo "User created."
 echo
 git clone https://aur.archlinux.org/yay.git
+chmod 777 yay
+echo "'/etc/sudoers' will now be opened with Vim through visudo command."
+echo "Uncomment '%wheel ALL=(ALL) ALL'.."
+read
+EDITOR=vim visudo
 cd yay
-sudo -u %username makepkg -si
+sudo -u $username makepkg -si
 cd ..
 rm -rf yay
 echo "Yay ready."
@@ -46,6 +61,7 @@ yay -S toilet -noconfirm
 echo "Toilet ready."
 yay -S inxi -noconfirm
 echo "Inxi ready."
+sleep 1
 
 
 toilet "1/6 — Setting up bootctl..." -f term --gay
@@ -55,6 +71,7 @@ echo "default arch" >> loader.conf
 echo "timeout " > loader.conf
 echo "'loader.conf' will now be opened with Vim."
 echo "After 'timeout' write the timeout ye desire in seconds. For example 'timeout 4'."
+read
 vim loader.conf
 cd entries
 echo "title ArchLinux" >> arch.conf
@@ -98,12 +115,7 @@ echo "Choose root password:"
 passwd root
 echo "Choose $username password:"
 passwd $username
-echo "'/etc/sudoers' will now be opened with Vim through visudo command."
-echo "Uncomment '%wheel ALL=(ALL) ALL'.."
-read
-EDITOR=vim visudo
 rm username.tmp
-echo "User is set up."
 sleep 1
 echo
 
