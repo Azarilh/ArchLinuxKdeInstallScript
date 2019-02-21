@@ -6,7 +6,7 @@ sleep 1
 
 clear
 echo "IMPORTANT: This script is supposed to be executed as root after the 'pacstrap /mnt' and 'arch-chroot /mnt' commands."
-sleep 4
+sleep 3
 echo "Press ENTER to continue."
 read
 clear
@@ -18,7 +18,7 @@ echo "You can edit it and share it edited or not edited. The copyright is GNU Ge
 read
 echo
 echo "PRESSING ENTER YOU AGREE THAT IT'S YOUR FULL RESPONSABILITY!"
-sleep 4
+sleep 2
 echo "Press ENTER to continue."
 read
 clear
@@ -139,7 +139,7 @@ toilet "2/6 — Adding AUR repositories..." -f term --gay
 echo "" >> /etc/pacman.conf
 echo "[archlinuxfr]" >> /etc/pacman.conf
 echo "SigLevel = Never" >> /etc/pacman.conf
-echo "Server = http://repo.archlinux.fr/$arch" >> /etc/pacman.conf
+echo -n "Server = http://repo.archlinux.fr/$" >> /etc/pacman.conf && echo arch
 echo "[archlinuxfr] added."
 echo
 echo "'/etc/pacman.conf' will now be opened with Vim."
