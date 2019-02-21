@@ -1,10 +1,30 @@
 #!/bin/bash
 
 clear
-echo "This script is supposed to be executed as root after the 'pacstrap /mnt' and 'arch-chroot /mnt' commands."
+echo "IMPORTANT: This script is supposed to be executed as root after the 'pacstrap /mnt' and 'arch-chroot /mnt' commands."
+read
+clear
+echo "ALSO IMPORTANT: Using this script is YOUR full responsability!"
+echo "I don't assume any responsability in regards of the usage of my script."
+echo "Using it, you agree that it's your full responsability whatever will happen to your computer device."
+echo "If you don't want to risk try it first on a virtual machine or an unused/unimportant computer or open the script with a text editor and check if it's what you want."
+echo "You can edit it and share it edited or not edited. The copyright is GNU General Public Licence v3."
+read
+echo
+echo "PRESSING ENTER YOU AGREE THAT IT'S YOUR FULL RESPONSABILITY!"
+sleep 2
+read
+clear
 echo "KDE Plasma and other important packages will be installed and configured on your system."
+read
 echo "'toilet', 'vim', 'inxi', 'git', 'sudo' and 'yay' packages are goin' to be installed and used by this script. You can remove 'em afterwards."
-echo "Edit the 'extra.txt' file to choose what extra packages to install."
+read
+echo "Edit the 'extra.txt' file to choose what extra packages to install (ye can do it afore the last phase of the installation begins)."
+read
+echo "Ye should set your keyboard layout afore. Use the 'loadkeys' command. Example: 'loadkeys it' for Italian layout."
+echo "The default is US. Available layouts can be listed with the command 'ls /usr/share/kbd/keymaps/**/*.map.gz'"
+echo "Ye can search writing 'ls /usr/share/kbd/keymaps/**/*SRC*.map.gz' where 'SRC' is the language. For example 'ls /usr/share/kbd/keymaps/**/*it*.map.gz'"
+read
 echo "Press ENTER to continue, otherwise press CTRL+C."
 read
 
