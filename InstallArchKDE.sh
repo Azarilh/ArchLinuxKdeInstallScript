@@ -2,6 +2,8 @@
 
 clear
 echo "IMPORTANT: This script is supposed to be executed as root after the 'pacstrap /mnt' and 'arch-chroot /mnt' commands."
+sleep 4
+echo "Press ENTER to continue."
 read
 clear
 echo "ALSO IMPORTANT: Using this script is YOUR full responsability!"
@@ -12,7 +14,8 @@ echo "You can edit it and share it edited or not edited. The copyright is GNU Ge
 read
 echo
 echo "PRESSING ENTER YOU AGREE THAT IT'S YOUR FULL RESPONSABILITY!"
-sleep 2
+sleep 4
+echo "Press ENTER to continue."
 read
 clear
 echo "KDE Plasma and other important packages will be installed and configured on your system."
