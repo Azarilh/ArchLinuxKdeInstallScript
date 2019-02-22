@@ -1,7 +1,7 @@
 #!/bin/bash
 
 clear
-echo "InstallArchKDE.sh — Version 1.00"
+echo "InstallArchKDE.sh — Version 1.01"
 sleep 1
 
 dir=$(pwd)
@@ -213,6 +213,7 @@ echo "'extra.txt' will be now opened with Vim."
 echo "Add or remove packages that you want to install from official Arch repositories."
 echo "Do not add packages that don't exist, this would cancel the installation of all the other packages."
 echo "NOTE: Konsole has been already installed! It's important to have at least one terminal emulator."
+echo "Press ENTER to open Vim."
 read
 vim extra.txt
 extra=$(cat extra.txt)
@@ -220,14 +221,25 @@ pacman -Sy $extra
 echo
 echo "extra2.txt will be now opened with Vim."
 echo "Add or remove packages that you want to install from AUR repositories."
+echo "Press ENTER to open Vim."
 read
 vim extra2.txt
 extra2=$(cat extra2.txt)
-yay -Sy $extra2
+sudo -u $username yay -Sy $extra2
 echo "Packages are installed."
-sleep 3
-clear
+echo "Press ENTER to continue to the next phase."
+read
 
+clear
+toilet "Optional — Execute your own script."
+echo "'extra3.sh' will be now opened with Vim."
+echo "Add your own script, if ye want. It will be executed immediately after you close Vim."
+echo "Press ENTER to open Vim."
+read
+vim extra3.sh
+./extra3.sh
+
+clear
 toilet DONE! --gay
 sleep 2
 echo
