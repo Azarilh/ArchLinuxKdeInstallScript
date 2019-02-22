@@ -12,6 +12,12 @@ From line 226, a custom script will be executed (extra3.sh). Per default, for ex
 All what you need to do is following the script's indications, when manual configuration is needed.<br>
 It's important that you follow all the steps correctly, otherwise something may not be done correctly afterwards.<br>
 For example: the program will ask you to choose a username, it must be a username that Linux can handle (f.e. capital letters are not allowed), otherwise the script will not create a user, which means that it will not install AUR packages (they can't be installed with root user).<br>
+You can download this script directly with Arch live-USB with these commands:<br>
+   $ pacman -Sy git   # To install git<br>
+   $ git clone https://github.com/Azarilh/ArchLinuxKdeInstallScript   # To download this github<br>
+   $ cd ArchLinuxKdeInstallScript   # To enter the folder ye just downloaded<br>
+   $ chmod 777 InstallArchKDE.sh   # To make the script be executable<br>
+   $ ./InstallArchKDE.sh   # To execute the script<br><br>
 This script is really simple, it doesn't use conditional commands (if, then, etc.), which is why you shouldn't make mistakes.<br>
 <br>
 This script is supposed to be executed as root after the 'pacstrap /mnt' and 'arch-chroot /mnt' commands.<br>
