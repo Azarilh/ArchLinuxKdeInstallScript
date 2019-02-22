@@ -16,7 +16,7 @@ To do so, you can use 'fdisk', 'gdisk', 'parted' or others. Here's an example in
 			(default)	# EXT4 partition
 		w		# All done, this writes on the drive and closes the gdisk program
 
-Now you should format the new partitions: (use fdisk -l to list the partitions)
+Now ye should format the new partitions: (use fdisk -l to list the partitions)
 
 	mkfs.vfat /dev/sda1	# Formats the first partition (1) on the first drive (a) in fat32 / This partition will be used as EFI boot partition
 	mkfs.ext4 /dev/sda2	# Formats the second partition (2) on the first drive (a) in ext4 / This partition will be used as root partition
@@ -29,10 +29,7 @@ Mount the root and the boot partitions:
 And finally execute 'pacstrap /mnt' and wait. Then execute 'arch-chroot /mnt'.
 Now execute the InstallArchKDE.sh script.
 
-If you don't have the script in the live-usb Arch, follow these steps:
-
-	mkdir asd
-	cd asd
+If you don't have the script in the live-USB Arch, follow these steps:
 	pacman -Sy git
 	git clone https://github.com/Azarilh/ArchLinuxKdeInstallScript
 	cd ArchLinuxKdeInstallScript
