@@ -5,10 +5,10 @@ To do so, you can use 'fdisk', 'gdisk', 'parted' or others. Here's an example in
 	gdisk /dev/sda
 		o		# Create new GPT partition label
 		n		# Create new partition
-			1				# Number of the partition
+			1		# Number of the partition
 			(default)	# Where this partition should start
 			512MiB		# Where it should finish, but writing MiB you set the total size of the partition
-			ef00			# EFI partition
+			ef00		# EFI partition
 		n
 			2
 			(default)
@@ -18,8 +18,8 @@ To do so, you can use 'fdisk', 'gdisk', 'parted' or others. Here's an example in
 
 Now you should format the new partitions: (use fdisk -l to list the partitions)
 
-	mkfs.vfat /dev/sda1		# Formats the first partition (1) on the first drive (a) in fat32 / This partition will be used as EFI boot partition
-	mkfs.ext4 /dev/sda2	# Formats the second partition (2) on the first drive (a) in ext4	/ This partition will be used as root partition
+	mkfs.vfat /dev/sda1	# Formats the first partition (1) on the first drive (a) in fat32 / This partition will be used as EFI boot partition
+	mkfs.ext4 /dev/sda2	# Formats the second partition (2) on the first drive (a) in ext4 / This partition will be used as root partition
 
 Mount the root and the boot partitions:
 	mount /dev/sda2 /mnt	# It's important to mount first the root, then the boot
