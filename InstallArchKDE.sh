@@ -85,7 +85,7 @@ git clone https://aur.archlinux.org/yay.git
 chmod 777 yay
 echo
 echo "'/etc/sudoers' will now be opened with Vim through visudo command."
-echo "Uncomment '%wheel ALL=(ALL) ALL'.."
+echo "Uncomment (remove #) '%wheel ALL=(ALL) ALL'.."
 echo "Press ENTER to open Vim."
 read
 EDITOR=vim visudo
@@ -191,17 +191,6 @@ echo "Simple Display Desktop Manager is enabled."
 systemctl enable pulseaudio
 echo "Pulseaudio is enabled."
 systemctl enable NetworkManager
-echo
-inxi -n
-echo
-echo "Write your IF name (it should be written above under 'inxi -n' command, it's probably eth0 or enp10s0 or something like that)."
-echo "If you're unsure write 'eth0' or 'enp10s0' then, after this script is done, check if you were right with the command 'inxi -n' or 'ifconfig'."
-echo "Press ENTER to open Vim."
-read
-vim asd.tmp
-asd=$(cat asd.tmp)
-systemctl enable dhcpcd@$asd
-rm asd.tmp
 echo "Network Manager is enabled."
 echo
 echo "Press ENTER to continue to the next phase."
