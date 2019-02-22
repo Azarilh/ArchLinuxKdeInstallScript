@@ -1,5 +1,5 @@
 Change keyboard layout with the command 'loadkeys'. Execute the script to see more details on how to (it will not edit your system until the Internet connection test will be made and you press ENTER).
-You don't need to install anything, but you need to prepare the partitions.
+You don't need to install anything (except 'git' if you want to directly download this program on Arch live-USB), but you need to prepare the partitions.
 To do so, you can use 'fdisk', 'gdisk', 'parted' or others. Here's an example in case you want to install only Arch in the drive: (these commands will erase completely the selected drive, ye're advised)
 
 	gdisk /dev/sda
