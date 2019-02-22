@@ -1,7 +1,7 @@
 #!/bin/bash
 
 clear
-echo "InstallArchKDE.sh — Version 1.01"
+echo "InstallArchKDE.sh — Version 1.02"
 sleep 1
 
 dir=$(pwd)
@@ -45,7 +45,7 @@ echo
 ping -q -c 4 qwant.com
 echo
 echo
-ping -q -c 4 duckduckgo.com
+ping -q -c 4 reddit.com
 echo
 echo
 ping -q -c 4 archlinux.org
@@ -69,7 +69,11 @@ echo "Makepkg: ready."
 
 echo
 echo "Creating a user..."
+echo
 echo "Choose your username (Vim will be opened):"
+echo "The username MUST be simple. No capital letters allowed. It should be between 1 to 32 charcters long."
+echo "Do not use dots. Do not end it in dash. It must not include colons."
+echo
 echo "VIM TUTORIAL: When ye're done press ALT+SHIFT+:, write 'w' to save, 'q' to quit, then press ENTER to confirm."
 echo "Press ENTER to open Vim."
 read
@@ -145,7 +149,7 @@ echo -n "Server = http://repo.archlinux.fr/$" >> /etc/pacman.conf && echo "arch"
 echo "[archlinuxfr] added."
 echo
 echo "'/etc/pacman.conf' will now be opened with Vim."
-echo "Ye should uncomment [multilib] and the line after."
+echo "Ye MUST uncomment [multilib] and the line after."
 echo "Press ENTER to open Vim."
 read
 vim /etc/pacman.conf
@@ -221,6 +225,7 @@ read
 
 clear
 toilet "Optional — Execute your own script."
+chmod 777 extra3.sh
 echo "'extra3.sh' will be now opened with Vim."
 echo "Add your own script, if ye want. It will be executed immediately after you close Vim."
 echo "Press ENTER to open Vim."
