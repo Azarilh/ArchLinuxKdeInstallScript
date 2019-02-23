@@ -58,13 +58,13 @@ clear
 echo "Initialising..."
 pacman -Syu --noconfirm
 echo "System: updated."
-pacman -S vim --noconfirm
+pacman -S vim --noconfirm --needed
 echo "Vim: ready."
-pacman -S git --noconfirm
+pacman -S git --noconfirm --needed
 echo "Git: ready."
-pacman -S sudo --noconfirm
+pacman -S sudo --noconfirm --needed
 echo "Sudo: ready."
-pacman -S base-devel --noconfirm
+pacman -S base-devel --noconfirm --needed
 echo "Makepkg: ready."
 
 echo
@@ -99,9 +99,9 @@ rm -rf yay
 echo "Yay: ready."
 
 echo
-sudo -u $username yay -S toilet --noconfirm
+sudo -u $username yay -S toilet --noconfirm --needed
 echo "Toilet: ready."
-sudo -u $username yay -S inxi --noconfirm
+sudo -u $username yay -S inxi --noconfirm --needed
 echo "Inxi: ready."
 echo
 echo "Press ENTER to continue to next phase."
@@ -180,8 +180,8 @@ read
 clear
 toilet "4/6 — Installing KDE and other important packages..." -f term --gay
 pacman -Sy
-pacman -S plasma
-pacman -S vim networkmanager network-manager-applet networkmanager-pptp networkmanager-openconnect networkmanager-vpnc sudo konsole packagekit-qt5 pulseaudio
+pacman -S plasma --needed
+pacman -S vim networkmanager network-manager-applet networkmanager-pptp networkmanager-openconnect networkmanager-vpnc sudo konsole packagekit-qt5 pulseaudio --needed
 echo "KDE Plasma is installed."
 echo
 echo "Press ENTER to continue to the next phase."
@@ -209,7 +209,7 @@ echo "Press ENTER to open Vim."
 read
 vim extra.txt
 extra=$(cat extra.txt)
-pacman -Sy $extra
+pacman -Sy $extra --needed
 echo
 echo "extra2.txt will be now opened with Vim."
 echo "Add or remove packages that you want to install from AUR repositories."
@@ -217,7 +217,7 @@ echo "Press ENTER to open Vim."
 read
 vim extra2.txt
 extra2=$(cat extra2.txt)
-sudo -u $username yay -Sy $extra2
+sudo -u $username yay -Sy $extra2 --needed
 echo "Packages are installed."
 echo "Press ENTER to continue to the next phase."
 read
