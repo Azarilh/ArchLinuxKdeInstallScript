@@ -1,7 +1,7 @@
 #!/bin/bash
 
 clear
-echo "InstallArchKDE.sh — Version 1.02"
+echo "InstallArchKDE.sh — Version 1.021"
 sleep 1
 
 dir=$(pwd)
