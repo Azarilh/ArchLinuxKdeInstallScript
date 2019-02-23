@@ -86,7 +86,6 @@ passwd $username
 echo "User created."
 echo
 git clone https://aur.archlinux.org/yay.git
-chmod 777 yay
 echo
 echo "'/etc/sudoers' will now be opened with Vim through visudo command."
 echo "Uncomment (remove #) '%wheel ALL=(ALL) ALL'.."
