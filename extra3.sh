@@ -6,6 +6,13 @@ systemctl enable tor
 sysctl kernel.unprivileged_userns_clone=1
 echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.conf
 
+# Downloading custom locale
+git clone https://github.com/Azarilh/en_AZ
+cd en_AZ
+cp en_AZ /usr/share/i18n/locales/
+echo "en_AZ.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+
 # Selecting language and locale
 echo "" >> /etc/environment
 echo "# Enable ibus." >> /etc/environment
