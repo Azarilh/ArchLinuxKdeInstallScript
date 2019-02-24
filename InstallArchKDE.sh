@@ -172,6 +172,8 @@ echo "Choose root password:"
 passwd root
 cd $dir
 rm username.tmp
+cp -f Resources/mkinitcpio.conf /etc/mkinitcpio.conf
+echo "'/etc/mkinitcpio.conf' has been updated."
 echo "Arch configured."
 echo
 echo "Press ENTER to continue to the next phase."
