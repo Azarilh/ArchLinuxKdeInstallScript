@@ -194,6 +194,9 @@ toilet "5/6 — Setting up KDE Plasma..." -f term --gay
 systemctl enable sddm
 echo "Simple Display Desktop Manager is enabled."
 systemctl enable pulseaudio
+echo "default_driver=pulse" > /etc/libao.conf
+echo "dev=default" >> /etc/libao.conf
+echo "quiet" >> /etc/libao.conf
 echo "Pulseaudio is enabled."
 systemctl enable NetworkManager
 echo "Network Manager is enabled."
