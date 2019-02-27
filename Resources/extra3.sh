@@ -9,6 +9,7 @@ echo kernel.unprivileged_userns_clone = 1 | tee /etc/sysctl.d/00-local-userns.co
 # Downloading and installing custom locale
 git clone https://github.com/Azarilh/en_AZ
 cd en_AZ
+localedef -i en_AZ -f UTF-8 en_AZ.UTF-8 -c -v
 cp en_AZ /usr/share/i18n/locales/
 echo "en_AZ.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
