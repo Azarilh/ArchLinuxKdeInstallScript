@@ -22,11 +22,11 @@ echo 'export XMODIFIERS=@im=ibus' >> /etc/environment
 echo 'export QT_IM_MODULE=ibus' >> /etc/environment
 echo "" >> /etc/environment
 echo "# Set language and locale" >> /etc/environment
-echo 'export LANG="en_GB.UTF-8"' >> /etc/environment
+echo '#export LANG="en_GB.UTF-8"' >> /etc/environment
 echo 'export LC_ALL="en_IE.UTF-8"' >> /etc/environment
 echo '#export LC_TIME="en_IE.UTF-8"' >> /etc/environment
 echo '#export LC_NUMERIC="en_IE.UTF-8"' >> /etc/environment
-echo 'export LC_CTYPE="en_IE.UTF-8"' >> /etc/environment
+echo '#export LC_CTYPE="en_IE.UTF-8"' >> /etc/environment
 echo '#export LC_COLLOCATE="en_IE.UTF-8"' >> /etc/environment
 echo '#export LC_MONETARY="en_IE.UTF-8"' >> /etc/environment
 echo 'export LC_MESSAGES="en_IE.UTF-8"' >> /etc/environment
