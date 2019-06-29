@@ -1,7 +1,7 @@
 #!/bin/bash
 
 clear
-echo "InstallArchKDE.sh — Version 1.022"
+echo "InstallArchKDE.sh — Version 1.023"
 sleep 1
 
 dir=$(pwd)
@@ -86,6 +86,7 @@ passwd $username
 echo "User created."
 echo
 git clone https://aur.archlinux.org/yay.git
+chmod 777 yay
 echo
 echo "'/etc/sudoers' will now be opened with Vim through visudo command."
 echo "Uncomment (remove #) '%wheel ALL=(ALL) ALL'.."
