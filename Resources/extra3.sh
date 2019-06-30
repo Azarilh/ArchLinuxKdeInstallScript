@@ -15,27 +15,27 @@ systemctl enable tor
 # locale-gen
 
 # Selecting language and locale
-echo "" >> /etc/environment
-echo "# Enable ibus." >> /etc/environment
-echo 'export GTK_IM_MODULE=ibus' >> /etc/environment
-echo 'export XMODIFIERS=@im=ibus' >> /etc/environment
-echo 'export QT_IM_MODULE=ibus' >> /etc/environment
-echo "" >> /etc/environment
-echo "# Set language and locale" >> /etc/environment
-echo '#export LANG="en_GB.UTF-8"' >> /etc/environment
-echo 'export LC_ALL="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_TIME="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_NUMERIC="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_CTYPE="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_COLLOCATE="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_MONETARY="en_IE.UTF-8"' >> /etc/environment
-echo 'export LC_MESSAGES="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_PAPER="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_NAME="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_ADDRESS="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_TELEPHONE="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_MEASUREMENT="en_IE.UTF-8"' >> /etc/environment
-echo '#export LC_INDENTIFICATION="en_IE.UTF-8"' >> /etc/environment
-echo "" >> /etc/environment
-echo "# KDE file chooser for GTK apps" >> /etc/environment
-echo "export GTK_USE_PORTAL=1" >> /etc/environment
+echo '
+# Enable ibus.
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
+# Set language and locale
+#export LANG="en_GB.UTF-8"
+export LC_ALL="en_IE.UTF-8"
+#export LC_TIME="en_IE.UTF-8"
+#export LC_NUMERIC="en_IE.UTF-8"
+#export LC_CTYPE="en_IE.UTF-8"
+#export LC_COLLOCATE="en_IE.UTF-8"
+#export LC_MONETARY="en_IE.UTF-8"
+export LC_MESSAGES="en_IE.UTF-8"
+#export LC_PAPER="en_IE.UTF-8"
+#export LC_NAME="en_IE.UTF-8"
+#export LC_ADDRESS="en_IE.UTF-8"
+#export LC_TELEPHONE="en_IE.UTF-8"
+#export LC_MEASUREMENT="en_IE.UTF-8"
+#export LC_INDENTIFICATION="en_IE.UTF-8"
+
+# KDE file chooser for GTK apps
+export GTK_USE_PORTAL=1' >> /etc/environment
