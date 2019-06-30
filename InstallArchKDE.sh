@@ -1,7 +1,7 @@
 #!/bin/bash
 
 clear
-echo "InstallArchKDE.sh — Version 1.023"
+echo "InstallArchKDE.sh — Version 1.2.4"
 sleep 1
 
 dir=$(pwd)
@@ -200,6 +200,7 @@ echo "dev=default" >> /etc/libao.conf
 echo "quiet" >> /etc/libao.conf
 echo "Pulseaudio is enabled."
 systemctl enable NetworkManager
+systemctl enable dhcpcd
 echo "Network Manager is enabled."
 echo
 echo "Press ENTER to continue to the next phase."
